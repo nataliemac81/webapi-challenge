@@ -39,6 +39,28 @@ router.get('/:id', (req, res) => {
 	})
 })
 
+router.get('/:id/actions', (req, res) => {
+	const { id } = req.params
+	const projectId = id
+	
+	projectDb.getProjectActions(projectId)
+	.then(actions => {
+		if(projectId) {
+			res.status(200).json(actions)
+		} else {
+			res.status(404).json({
+				message: "An action with that ID does not exist."
+			})
+		}
+	})
+	.catch(err => {
+		res.status(500).json({
+			err: err,
+			message: "The actions information could not be retrieved."
+		})
+	})
+})
+
 router.post('/', (req, res) => {
 
 })
