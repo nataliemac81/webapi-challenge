@@ -25,14 +25,22 @@ In this challenge, create a web API around the following resources: `Projects` a
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Mention two parts of Express that you learned about this week.
+        - middleware in Express can change the response or request but not necessary.
+        -routing allows you to fire a request handler function based on the url and http method.
 
 - [ ] Describe Middleware?
+        Middleware is a function that operate on request and response objects and return the response or call the next middleware in the stack.
 
 - [ ] Describe a Resource?
+        A resource is an object with a type, associated data, relationships to other resources, and a set of methods that operate on it.
 
 - [ ] What can the API return to help clients know if a request was successful?
+        A status code. A code of 200 lets the client know the request was successful.
 
 - [ ] How can we partition our application into sub-applications?
+        We can create new instances of the Express object and use them in other Express objects with .use like how we do with routers or middleware. 
+
+
 
 ## Project Setup
 
