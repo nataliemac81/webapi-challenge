@@ -82,6 +82,31 @@ router.post('/', (req, res) => {
 		})
 })
 
+router.post('/:id/actions', (req, res) => {
+	const actionInfo = req.body
+	const projectId = req.params.id
+
+	if (!projectId) {
+		res.status(404).json({ message: "A project with that ID does not exist."})
+	}
+	if (!actionInfo.description || !actionInfo.notes) {
+		res.status(400).json({ message: "Please provide a note and description for the project."})
+	} else {
+		actionDb.insert(actionInfo)
+		.then(id => {
+			actionDb.get(id.id).then(action => {
+				res.status(201).json(action)
+			})
+		})
+		.catch(err => {
+			res.status(500).json({
+				err: err,
+				message: "There was an error while saving the action to the database"
+			})
+		})
+	}
+})
+
 router.put('/:id', (req, res) => {
 	const { id } = req.params
 	const changes = req.body
